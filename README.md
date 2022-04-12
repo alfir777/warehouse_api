@@ -29,11 +29,7 @@ docker-compose -f docker-compose.yml up -d
 pip install -r requirements.txt
 ```
 
-```
-docker-compose -f docker-compose.yml up -d
-```
-
-5. Запуск
+4. Запуск
 
 ```
 python3 main.py
