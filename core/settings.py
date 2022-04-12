@@ -1,3 +1,6 @@
+import os
+
+from dotenv import load_dotenv
 from pydantic import BaseSettings
 
 
@@ -14,3 +17,17 @@ settings = Settings(
     _env_file='.env',
     _env_file_encoding='utf-8',
 )
+
+TESTING = False
+if os.path.isfile('./.env'):
+    load_dotenv('./.env')
+else:
+    exit('DO cp ./.env_template.py ./.env and set token!')
+if os.environ['TESTING'] == 'True':
+    TESTING = True
+elif os.environ['TESTING'] == 'False':
+    TESTING = False
+
+if TESTING:
+    DATABASE_URL_TESTING = os.environ['DATABASE_URL_TESTING']
+    settings.database_url = DATABASE_URL_TESTING
